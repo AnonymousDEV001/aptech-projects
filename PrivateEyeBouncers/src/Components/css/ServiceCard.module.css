@@ -1,0 +1,30 @@
+.serviceCard {
+  /* min-height: 10rem; */
+  max-width: 23rem;
+  /* padding: 1rem; */
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  height: fit-content;
+}
+
+.serviceCard h3 {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+.serviceCard p {
+  font-size: 0.8rem;
+}
+.serviceCard img {
+  width: 100%;
+  height: 16rem;
+}
+@media screen and (max-width:600px){
+  .serviceCard img {
+    padding: 0rem;
+  }
+  
+}

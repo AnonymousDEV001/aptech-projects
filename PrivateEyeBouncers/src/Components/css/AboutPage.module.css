@@ -1,0 +1,93 @@
+.aboutPage{
+    min-height: 100vh;
+}
+.aboutPageBg{
+    min-height: 70vh;
+    background-image: url('../../../public/about.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.bgShade{
+    min-height: 70vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color:white;
+    font-size: 3rem;
+}
+.bgShade h3{
+    margin-top: 4rem;
+}
+.line{
+    width: 5rem;
+    margin-top: 1rem;
+    height: 2px;
+    background-color: red;
+}
+.trustTextContainer{
+    min-height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(245, 246, 253, 255);;
+}
+.trustTextContainer h3{
+    font-size: 3rem;
+    color: rgb(86, 90, 97);
+    width: 40%;
+}
+.trustTextContainer p{
+    width: 40%;
+}
+
+.teamCard{
+    min-height: 60vh;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: rgb(37, 39, 45);
+}
+.teamCard img{
+    width: 30rem;
+}
+.teamText{
+    width: 50%;
+}
+.teamText h3{
+    font-size: 2.5rem;
+}
+.teamText p{
+    color: grey;
+}
+.teamCard:nth-child(even){
+    flex-direction: row-reverse;
+}
+@media screen and (max-width:600px){
+    .teamCard img{
+        width: 90%;
+        margin: 1rem 0;
+    }
+    .teamText{
+        width: 90%;
+        text-align: center;
+    }
+    .teamText h3{
+        font-size: 2rem;
+    }
+    .trustTextContainer{
+        flex-direction: column;
+        text-align: center;
+    }
+    .trustTextContainer h3{
+        width: 90%;
+        margin-top: 2rem;
+    }
+    .trustTextContainer p{
+        width: 90%;
+        margin: 2rem 1rem;
+    }
+}

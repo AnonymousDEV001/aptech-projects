@@ -1,0 +1,8 @@
+.services{
+    min-height: 100vh;
+}
+.pageBg{
+    min-height: 70vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

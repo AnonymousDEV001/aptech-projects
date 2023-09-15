@@ -1,0 +1,91 @@
+.contact {
+    min-height: 100vh;
+    background-color: rgba(245, 246, 253, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .contactForm {
+    width: 80%;
+    min-height: 50vh;
+    background-color: white;
+    margin-bottom: 5rem;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    display: flex;
+  }
+  .form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .formLeft {
+    background-color: #ff6060;
+    min-height: 30rem;
+    width: 40%;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .formLeftText h4 {
+    font-size: 2rem;
+  }
+  .formLeftText p {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+  .formLeftText {
+    padding: 1rem;
+    color: var(--white);
+  }
+  .formRight {
+    width: 60%;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .formRight form {
+    width: 100%;
+  }
+  .formRight input {
+    width: 100%;
+    padding: 1rem;
+  }
+  .formRight textarea {
+    width: 100%;
+    padding: 1rem;
+    resize: vertical;
+    height: 7rem;
+  }
+  #submit{
+    background-color: var(--lightRed);
+    border: none;
+    border-radius: 0.2rem;
+    color: white;
+    width: 6rem;
+  }
+  #submit:hover{
+    background-color: var(--red);
+  }
+
+  @media screen and (max-width:600px){
+    .contactForm {
+      flex-direction: column;
+      padding: 0;
+      width: 100%;
+    }
+    .formLeft {
+      width: 100%;
+      min-height: 20rem;
+      border-radius: 0%;
+  }
+  .formRight{
+    margin: 2rem 0;
+    width: 100%;
+  }
+  }

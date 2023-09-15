@@ -1,0 +1,56 @@
+.contactPage{
+    min-height: 100vh;
+}
+.map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(245, 246, 253, 255);
+    padding: 5rem 0;
+}
+.contactPage iframe{
+    width: 90%;
+    border: none;
+}
+.contactDetails{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.contactDetailsCard{
+    flex-wrap: wrap;
+    min-height: 40vh;
+    width: 20%;
+    margin: 0 1rem;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    text-align: center;
+}
+.contactDetailsCard span{
+    color: red;
+    font-size: 2rem;
+}
+.detailsHeading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detailsHeading p{
+    font-weight: 600;
+}
+.pageBg{
+        min-height: 70vh;
+        background-image: url("https://images.unsplash.com/photo-1561928601-2be5d49de6eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80");
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+@media screen and (max-width:600px){
+    .contactDetailsCard{
+        width: 90%;
+        min-height: 27vh;
+    }
+}
