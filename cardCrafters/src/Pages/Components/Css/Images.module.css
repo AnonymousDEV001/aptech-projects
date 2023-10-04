@@ -92,3 +92,28 @@
     resize: vertical;
     min-height: 7rem;
 }
+
+.close{
+    position: absolute;
+    right: -0.5rem;
+    top: -0.5rem;
+}
+.specificationInput input{
+    width: 100%;
+}
+.specificationInput{
+    position: relative;
+    width: 40%;
+}
+.specifications{
+    gap: 1rem;
+    display: flex;
+    align-items:center;
+    flex-wrap: wrap;
+}
+.specifications button{
+    width: 20%;
+}
+.specifications span{
+    cursor: pointer;
+}

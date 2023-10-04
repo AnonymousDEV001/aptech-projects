@@ -1,8 +1,30 @@
 import React, { useEffect, useState } from "react";
 import ProductCss from "./Css/ProductSection.module.css";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ProductSection() {
   const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState({});
+  const [extraDetails, setExtraDetails] = useState({});
+  const params = useParams();
+  const productDetails = useSelector(
+    (state) => state.productFetch.productDetails
+  );
+
+  useEffect(() => {
+    if (productDetails.products !== null) {
+      let product = productDetails.products.filter(
+        (product) => product.id == params.id
+      );
+      setProduct(product[0]);
+      setExtraDetails({
+        specifications: JSON.parse(product[0].Specifications),
+        additionalFeatures: JSON.parse(product[0].AdditionalFeatures),
+      });
+      console.log(extraDetails.specifications);
+    }
+  }, [productDetails]);
 
   function imageZoom(imgID, resultID) {
     var img, lens, result, cx, cy;
@@ -94,75 +116,52 @@ function ProductSection() {
           onMouseOver={showMag}
           onMouseOut={hideMag}
           id="myimage"
-          src={"bg2.jpeg"}
+          src={product.ImageUrl}
         />
         <div id="myresult" class={ProductCss.imgZoomResult}></div>
       </div>
       <div className={ProductCss.productDetails}>
         <div className={ProductCss.description}>
-          <h3 className="active">Whimsical Wishes: A Birthday Delight</h3>
-          <p>
-            "Whimsical Wishes: A Birthday Delight" is a celebration captured in
-            a card. Bursting with charm and vibrant hues, this card is a joyful
-            ode to another year of cherished memories and new adventures. The
-            playful design and heartfelt message are sure to bring a smile to
-            the birthday celebrant's face. Let this card be the perfect conduit
-            for your warmest wishes, creating a moment that will be cherished
-            for years to come. Elevate the birthday experience with "Whimsical
-            Wishes."
-          </p>
+          <h3 className="active">{product.Title}</h3>
+          <p>{product.Description}</p>
 
           <h3 className="active">Specifications:</h3>
           <ul>
-            <li>
-              Dimensions: 5.5 inches x 8.5 inches (Standard Greeting Card Size)
-            </li>
-            <li>Material: High-quality, heavyweight cardstock</li>
-            <li>
-              Envelope: Included, matching color with a peel-and-seal closure
-            </li>
-            <li>
-              Design: Playful and vibrant birthday-themed illustration with
-              intricate detailing
-            </li>
-            <li>Inside: Blank for personalized messages</li>
-            <li>Packaging: Individually wrapped in a protective sleeve</li>
+            {extraDetails.specifications &&
+              extraDetails.specifications.map((specification) => (
+                <li>{specification.value}</li>
+              ))}
           </ul>
           <h3 className="active">Additional Features:</h3>
           <ul>
-            <li>
-              Front cover embellished with subtle, glitter accents for added
-              sparkle
-            </li>
-            <li>Smooth, matte finish for a refined feel</li>
+            {extraDetails.additionalFeatures &&
+              extraDetails.additionalFeatures.map((feature) => (
+                <li>{feature.value}</li>
+              ))}
           </ul>
           <p>Availability: TRUE</p>
 
-
-
-
-
           <form className={ProductCss.form}>
             <div className={ProductCss.formBtn}>
-            <div
-              className={`${ProductCss.valueButton}  ${ProductCss.decrease}`}
-              id="decrease"
-              onClick={() => {
-                setQuantity(quantity - 1);
-              }}
-            >
-              -
-            </div>
-            <input className={ProductCss.number} value={quantity} />
-            <div
-              className={`${ProductCss.valueButton}  ${ProductCss.increase}`}
-              id="increase"
-              onClick={() => {
-                setQuantity(quantity + 1);
-              }}
-            >
-              +
-            </div>
+              <div
+                className={`${ProductCss.valueButton}  ${ProductCss.decrease}`}
+                id="decrease"
+                onClick={() => {
+                  setQuantity(quantity - 1);
+                }}
+              >
+                -
+              </div>
+              <input className={ProductCss.number} value={quantity} />
+              <div
+                className={`${ProductCss.valueButton}  ${ProductCss.increase}`}
+                id="increase"
+                onClick={() => {
+                  setQuantity(quantity + 1);
+                }}
+              >
+                +
+              </div>
             </div>
             <button>Add To Cart</button>
           </form>

@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import NavbarCss from "./Css/Navbar.module.css";
 import { Link,useLocation } from "react-router-dom";
+import logo from '../../../public/logo.svg'
+import flower1 from '../../../public/flower1.svg'
 
 function Navbar() {
   let location = useLocation()
@@ -24,10 +26,12 @@ function Navbar() {
 
   return (
     <nav className={NavbarCss.navigation}>
+      <Link className="flex center" to={'/'}>
       <div className={`flex center ${NavbarCss.logo}`}>
-        <img src="logo.svg" alt="" />
+        <img src={logo} alt="" />
         <p>Card Crafters</p>
       </div>
+      </Link>
       <div style={location.pathname == "/dashboard"?{display:"none"}:{}} className={`${NavbarCss.links} flex center column}`}>
         <ul className={`flex center`}>
           <Link to={'/'}><li className={`active`}>Home</li></Link>
@@ -46,7 +50,7 @@ function Navbar() {
         </ul>
       </div>
       <div style={location.pathname == "/dashboard"?{display:"none"}:{}} className={`${NavbarCss.flower1}`}>
-        <img src="flower1.svg" alt="" />
+        <img src={flower1} alt="" />
       </div>
       <div className="blank"></div>
     </nav>

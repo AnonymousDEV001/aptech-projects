@@ -5,6 +5,7 @@ import {
   fetchProducts,
   productIdChange,
 } from "../../ReduxStore/Reducers/productSlice";
+import { Link } from "react-router-dom";
 
 function ProductCards() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function ProductCards() {
       );
       setProducts(newProducts);
     }
-  }, [state,productShow]);
+  }, [state, productShow]);
 
   return (
     <div className={productCardsCss.productCards}>
@@ -47,14 +48,22 @@ function ProductCards() {
       <div className={productCardsCss.gallery}>
         <div>
           <button
+            style={
+              productShow === "All" ? { backgroundColor: "#0085FF" } : null
+            }
             onClick={() => {
               dispatch(productIdChange("All"));
             }}
-            className={`${productCardsCss.active} ${productCardsCss.button}`}
+            className={`${productCardsCss.button}`}
           >
             All
           </button>
           <button
+            style={
+              productShow === "Birthdays"
+                ? { backgroundColor: "#0085FF" }
+                : null
+            }
             onClick={() => {
               dispatch(productIdChange("Birthdays"));
             }}
@@ -63,6 +72,11 @@ function ProductCards() {
             Birthdays
           </button>
           <button
+            style={
+              productShow === "Weaddings"
+                ? { backgroundColor: "#0085FF" }
+                : null
+            }
             onClick={() => {
               dispatch(productIdChange("Weaddings"));
             }}
@@ -71,6 +85,9 @@ function ProductCards() {
             Weaddings
           </button>
           <button
+            style={
+              productShow === "Holidays" ? { backgroundColor: "#0085FF" } : null
+            }
             onClick={() => {
               dispatch(productIdChange("Holidays"));
             }}
@@ -79,7 +96,12 @@ function ProductCards() {
             Holidays
           </button>
           <button
-            onClick={() => {
+            style={
+              productShow === "Anniversaries"
+                ? { backgroundColor: "#0085FF" }
+                : null
+            }
+            onClick={(e) => {
               dispatch(productIdChange("Anniversaries"));
             }}
             className={`${productCardsCss.button}`}
@@ -87,6 +109,11 @@ function ProductCards() {
             Anniversaries
           </button>
           <button
+            style={
+              productShow === "Graduation"
+                ? { backgroundColor: "#0085FF" }
+                : null
+            }
             onClick={() => {
               dispatch(productIdChange("Graduation"));
             }}
@@ -95,6 +122,11 @@ function ProductCards() {
             Graduations
           </button>
           <button
+            style={
+              productShow === "Thank You"
+                ? { backgroundColor: "#0085FF" }
+                : null
+            }
             onClick={() => {
               dispatch(productIdChange("Thank You"));
             }}
@@ -112,13 +144,15 @@ function ProductCards() {
               let columnProducts = products.slice(startingIndex, endingIndex);
 
               return (
-                <div key={index} className={productCardsCss.column}>
+                <div className={productCardsCss.column}>
                   <div className={productCardsCss.imageContainer}>
                     {columnProducts.map((nextProduct) => (
-                      <img
-                        key={nextProduct.id} // Assuming `nextProduct.id` is unique
-                        src={nextProduct.ImageUrl}
-                      />
+                      <Link to={`/product/${nextProduct.id}`}>
+                        <img 
+                          key={nextProduct.id} // Assuming `nextProduct.id` is unique
+                          src={nextProduct.ImageUrl}
+                        />
+                      </Link>
                     ))}
                   </div>
                 </div>
