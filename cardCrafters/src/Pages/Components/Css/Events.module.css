@@ -1,0 +1,18 @@
+.eventCards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  .eventsHeading h3 {
+    font-size: 2.5rem;
+  }
+  
+  .eventsHeading p {
+    margin: 0.8rem 0;
+    width: 60%;
+    text-align: center;
+  }
+  

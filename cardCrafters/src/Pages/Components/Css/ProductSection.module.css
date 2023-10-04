@@ -1,0 +1,91 @@
+.imgZoomContainer {
+  pointer-events: none;
+  position: relative;
+  display: flex;
+  margin: 3rem 2rem;
+}
+.imgZoomContainer img {
+  pointer-events: auto;
+  height: 25rem;
+  width: 35rem;
+}
+.imgZoomLens {
+  display: none;
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 15rem;
+  height: 10rem;
+  background-color: #ffffff70;
+}
+
+.imgZoomResult {
+  display: none;
+  border: 1px solid #d4d4d4;
+  position: absolute;
+  left: 35rem;
+  /*set the size of the result div:*/
+  height: 25rem;
+  width: 35rem;
+  /* height: 30vw; */
+}
+
+.productSection {
+  justify-content: space-between;
+}
+.productDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 1rem;
+}
+.description {
+  width: 80%;
+  margin-top: 3rem;
+}
+.description h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.description p {
+  margin: 1rem 0;
+}
+.description ul {
+  margin-left: 1.4rem;
+}
+
+.formBtn {
+  display: flex;
+}
+.valueButton {
+  padding: 1rem;
+  background-color: rgba(211, 211, 211, 0.289);
+}
+.decrease {
+  border-radius: 0.6rem 0 0 0.6rem;
+}
+.increase {
+  border-radius: 0 0.6rem 0.6rem 0;
+}
+.number {
+  text-align: center;
+  width: 3rem;
+  border: 1px solid lightgrey;
+}
+.number:focus {
+  outline: none;
+}
+.form button{
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border: none;
+  background-color: #dae0ffab;
+  border-radius: 1rem;
+  
+}
+.form button:hover{
+  background-color: #4665ffab;
+  color: white;
+  
+}

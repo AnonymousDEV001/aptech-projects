@@ -1,0 +1,40 @@
+.my1 {
+  margin: 0.3rem 0;
+}
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  min-height: 6rem;
+  margin: 0 3.5rem;
+}
+.logo img {
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+.links li {
+  list-style-type: none;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.flower1 {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dropdown{
+  position: absolute;
+  display: none;
+  background-color: #0085ff;
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  top: 5rem;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  
+}
+.dropdown li{
+  margin: 1rem;
+  color: rgb(241, 241, 241);
+}

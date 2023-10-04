@@ -1,0 +1,36 @@
+.left{
+    width: 35%;
+    background-color: #95a9ff;
+    min-height: 100vh;
+}
+.right{
+    display: flex;
+    width: 65%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.right form{
+    display: flex;
+    flex-direction: column;
+}
+.right form input{
+    padding: 1rem;
+    width: 25rem;
+    border: none;
+    background-color: #dee4ffab;
+    margin: 0.3rem 0;
+    border-radius: 0.2rem;
+}
+.right form button{
+    padding: 0.7rem 1rem;
+    width: 7rem;
+    background-color:#7790ff;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+}
+.right h3{
+    font-size: 2rem;
+    margin: 1rem 0;
+}

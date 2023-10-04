@@ -1,0 +1,12 @@
+.eventCard{
+    /* border: 1px solid black; */
+    margin: 1rem;
+    text-align: center;
+    color: grey;
+  }
+  .eventCard img{
+    height: 15rem;
+    width: 25rem;
+    margin-bottom: 0.5rem;
+  }
+  

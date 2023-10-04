@@ -1,0 +1,30 @@
+.footer{
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .footer p{
+    font-size: 0.9rem;
+  }
+  .footerUp{
+    /* background-color: #F3F3F3; */
+    background-color: #dae0ffab;
+    display: flex;
+    justify-content: space-between;
+    padding:4rem;
+  }
+  .footerBottom{
+    min-height: 5rem;
+    /* background-color: #D9D9D9; */
+    background-color: #dae0ff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+  }
+  .logo{
+    align-items: center;
+  }
+  .contactInfo{
+    margin: 1rem 0;
+  }

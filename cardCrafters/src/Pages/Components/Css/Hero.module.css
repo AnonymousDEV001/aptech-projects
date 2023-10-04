@@ -1,0 +1,50 @@
+.heroText {
+  height: 100%;
+}
+
+.left {
+  width: 40%;
+  min-height: 25rem;
+  margin-left: 5rem;
+  gap: 0.5rem;
+}
+
+.right {
+  width: 50%;
+}
+
+.left h3 {
+  font-size: 2.5rem;
+}
+
+.imgs {
+  position: absolute;
+  top: 0;
+}
+
+.imgs img:nth-child(1) {
+  height: 17rem;
+  transform: rotate(30deg);
+  top: 11rem;
+  position: absolute;
+  z-index: 0;
+  right: -37rem;
+}
+
+.imgs img:nth-child(2) {
+  height: 20rem;
+  transform: rotate(21deg);
+  top: 18rem;
+  right: -32rem;
+  position: absolute;
+  z-index: 2;
+}
+
+.imgs img:nth-child(3) {
+  height: 25rem;
+  transform: rotate(21deg);
+  top: 27rem;
+  right: -39rem;
+  position: absolute;
+  z-index: 1;
+}

@@ -1,0 +1,46 @@
+.joinUS {
+  min-height: 40rem;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.joinleft h3 {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+.joinleft p {
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+}
+.joinleft {
+  width: 50%;
+  margin: 0 4rem;
+}
+.joinRight {
+  width: 50%;
+}
+.joinRight img {
+  width: 10rem;
+  position: absolute;
+}
+.joinRight img:nth-child(1) {
+  width: 30rem;
+  transform: rotate(20deg);
+  top: 0;
+  position: absolute;
+  right: 0;
+}
+.joinRight img:nth-child(2) {
+  width: 30rem;
+  transform: rotate(5deg);
+  top: 10rem;
+  position: absolute;
+  right: 0;
+}
+.joinRight img:nth-child(3) {
+  width: 30rem;
+  transform: rotate(-10deg);
+  top: 20rem;
+  position: absolute;
+  right: -2rem;
+}

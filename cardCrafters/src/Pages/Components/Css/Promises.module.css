@@ -1,0 +1,46 @@
+.promises {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .flower2 {
+    position: absolute;
+    top: -6rem;
+    left: 0rem;
+    transform: rotate(5deg);
+  }
+  
+  .pleft {
+    width: 40%;
+    min-height: 65vh;
+    margin-left: 5rem;
+    gap: 0.5rem;
+  }
+  
+  .promisesTest {
+    min-height: 80vh;
+    justify-content: center;
+  }
+  
+  .promisesTest h3 {
+    margin: 1.5rem 0;
+  }
+  
+  .pleft h3 {
+    font-size: 2.5rem;
+  }
+  
+  .eventsHeading h3 {
+    font-size: 2.5rem;
+  }
+  
+  .eventsHeading p {
+    margin: 0.8rem 0;
+    width: 60%;
+    text-align: center;
+  }
+  
+  

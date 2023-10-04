@@ -1,0 +1,20 @@
+.heading{
+    margin-left: 7rem;
+    font-size: 1.5rem;
+}
+.cards{
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+.card{
+    height: 15rem;
+    padding: 1rem;
+    background-color: #0085FF;
+    display: flex;
+    color:white;
+    justify-content: space-around;
+    border-radius:1rem;
+    align-items:center;
+    flex-direction:column;
+}

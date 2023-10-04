@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@800&family=Mooli&family=Space+Grotesk:wght@500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Mooli", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+body {
+  overflow-x: hidden;
+}
+.flex {
+  display: flex;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.justify {
+  justify-content: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.my1 {
+  margin: 0.3rem 0;
+}
+
+.active {
+  color: #0085ff;
+}
+.hero {
+  /* background-color: #f3f3f3; */
+  background-color: #dee4ffab;
+  min-height: 30rem;
+}

@@ -1,0 +1,40 @@
+.messageSection{
+    margin: 3rem 7rem;
+    font-size: 1.5rem;
+}
+.messageSection h3{
+    margin: 1rem 0;
+}
+.messageCard:nth-child(odd){
+    background-color: #F8F8F8;
+}
+.messageCard:nth-child(even){
+    background-color: #F0F0F0;
+}
+.messageCard{
+    margin: 1rem 0;
+    width: 100%;
+    height: 10rem;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    padding:0rem 3rem;
+    border-radius:1rem;
+    color: rgb(83, 83, 83);
+    flex-direction:column;
+}
+
+.mButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mButton button{
+    padding: 1rem 2rem;
+    background-color: #0085FF;
+    border-radius:0.5rem;
+    border: none;
+    color:white;
+    margin:1rem 0;
+}
