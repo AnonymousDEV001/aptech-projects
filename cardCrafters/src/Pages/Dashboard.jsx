@@ -10,16 +10,17 @@ import { fetchProducts } from "../ReduxStore/Reducers/productSlice";
 
 function Dashboard() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const usersMessages = useSelector((state) => state.dashboard.usersMessages);
+  const products = useSelector((state) => state.productFetch.productDetails.products);
 
   useEffect(() => {
-    if (state.dashboard.usersMessages === null) {
+    if (usersMessages === null) {
       dispatch(fetchUsersMessages());
     }
-    if (state.productFetch.productDetails.products === null) {
+    if (products === null) {
       dispatch(fetchProducts());
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>

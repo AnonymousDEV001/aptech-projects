@@ -9,6 +9,12 @@ const addProductSlice = createSlice({
   name: "addProduct",
   initialState,
   reducers: {
+    addAndUpdateSpecifications:(state,action)=>{
+      state.specifications = action.payload
+    },
+    addAndUpdateAdditionalFeatures:(state,action)=>{
+      state.additionalFeatures = action.payload
+    },
     addSpecifications: (state, action) => {
       const specification = {
         id: nanoid(),
@@ -28,6 +34,12 @@ const addProductSlice = createSlice({
           ? { ...specification, value: action.payload.value }
           : specification
       );
+    },
+    cleanSpecifications:(state,action)=>{
+      state.specifications = action.payload
+    },
+    cleanAdditionalFeatures:(state,action)=>{
+      state.additionalFeatures = action.payload
     },
     addAdditionalFeature: (state, action) => {
       const specification = {
@@ -51,7 +63,7 @@ const addProductSlice = createSlice({
     },
   },
 });
-export const { addSpecifications, removeSpecifications, updateSpecifications,addAdditionalFeature,removeAdditionalFeature,updateAdditionalFeature } =
+export const { addSpecifications, removeSpecifications, updateSpecifications,addAdditionalFeature,removeAdditionalFeature,updateAdditionalFeature,cleanSpecifications,cleanAdditionalFeatures,addAndUpdateSpecifications,addAndUpdateAdditionalFeatures } =
   addProductSlice.actions;
 
 export default addProductSlice.reducer;

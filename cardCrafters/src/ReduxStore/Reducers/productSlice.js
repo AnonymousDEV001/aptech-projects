@@ -35,9 +35,24 @@ const productSlice = createSlice({
     productIdChange : (state, action)=>{
         state.productShow = action.payload
     },
+    productRemove:(state,action)=>{
+      state.productDetails.products = state.productDetails.products.filter((product)=> product.id !== action.payload)
+    },
+    productAdd:(state,action)=>{
+      if(state.productDetails.products !== null){
+        state.productDetails.products.push(action.payload)
+      }
+    },
+    productUpdate:(state,action)=>{
+      if(state.productDetails.products !== null){
+        state.productDetails.products = state.productDetails.products.map((product)=> product.id === action.payload.id ? action.payload.product: product)
+
+      }
+
+    }
   }
 });
 
 
-export const {productIdChange} = productSlice.actions
+export const {productIdChange,productRemove,productAdd,productUpdate} = productSlice.actions
 export default productSlice.reducer;

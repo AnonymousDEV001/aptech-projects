@@ -3,7 +3,9 @@ import StatisticsCss from "./Css/Statistics.module.css";
 import { useSelector } from "react-redux";
 
 function Statistics() {
-  const state = useSelector((state) => state);
+
+  const usersMessages = useSelector((state) => state.dashboard.usersMessages);
+  const products = useSelector((state) => state.productFetch.productDetails.products);
 
   const [details, setDetails] = useState({
     totalMessages: 0,
@@ -11,13 +13,13 @@ function Statistics() {
   });
 
   useEffect(() => {
-    if (state.dashboard.usersMessages !== null && state.productFetch.productDetails.products !== null) {
+    if (usersMessages !== null && products !== null) {
       setDetails({
-        totalMessages: state.dashboard.usersMessages.length,
-        totalImages: state.productFetch.productDetails.products.length,
+        totalMessages: usersMessages.length,
+        totalImages: products.length,
       });
     }
-  }, [state.dashboard.usersMessages, state.productFetch.productDetails.products]);
+  }, [usersMessages, products]);
 
   return (
     <div className={`${StatisticsCss.heading}`}>
@@ -32,7 +34,7 @@ function Statistics() {
           <p>{details.totalMessages}</p>
         </div>
         <div className={StatisticsCss.card}>
-          <p>Total Images</p>
+          <p>Total Products</p>
           <p>{details.totalImages}</p>
         </div>
       </div>

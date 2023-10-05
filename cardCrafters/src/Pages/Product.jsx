@@ -15,7 +15,7 @@ function Product() {
       dispatch(fetchProducts())
       
     }
-  },[dispatch])
+  },[])
   return (
     <div>
       <Navbar/>

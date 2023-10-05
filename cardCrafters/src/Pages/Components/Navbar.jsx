@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import NavbarCss from "./Css/Navbar.module.css";
 import { Link,useLocation } from "react-router-dom";
-import logo from '../../../public/logo.svg'
-import flower1 from '../../../public/flower1.svg'
+import logo from '../../assets/logo.svg'
+import flower1 from '../../assets/flower1.svg';
 
 function Navbar() {
   let location = useLocation()

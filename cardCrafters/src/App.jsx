@@ -8,6 +8,7 @@ import Product from "./Pages/Product";
 import Sigin from "./Pages/Sigin";
 import Dashboard from "./Pages/Dashboard";
 import AddingImage from "./Pages/AddingImage";
+import UpdateProduct from "./Pages/UpdateProduct";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/signin" element={<Sigin />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/addimage" element={<AddingImage />} />
+          <Route exact path="/updateproduct/:id" element={<UpdateProduct />} />
         </Routes>
       </div>
     </BrowserRouter>

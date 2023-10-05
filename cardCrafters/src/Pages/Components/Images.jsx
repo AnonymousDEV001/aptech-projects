@@ -1,13 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ImagesCss from "./Css/Images.module.css";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import {productRemove} from '../../ReduxStore/Reducers/productSlice'
 
 function Images() {
+
+  const dispatch = useDispatch()
+
   const [images, setImages] = useState([]);
   const [shownImages, setShownImages] = useState(4);
 
   const state = useSelector((state) => state.productFetch);
+
+  const deleteProduct = async (id) => {
+    const url = "http://127.0.0.1:8000/deleteproduct";
+    await fetch(url, {
+      method: "DELETE",
+      contentType: "application/json",
+      body: JSON.stringify({ id: id }),
+    });
+
+    dispatch(productRemove(id))
+  };
 
   useEffect(() => {
     if (state.productDetails.products !== null) {
@@ -18,8 +33,8 @@ function Images() {
   return (
     <div className={ImagesCss.images}>
       <h3 className="active">Images</h3>
-      <Link to={'/addimage'}>
-      <button>Add Image</button>
+      <Link to={"/addimage"}>
+        <button>Add Image</button>
       </Link>
       <div className={ImagesCss.imageCards}>
         {images.slice(0, shownImages).map((product) => {
@@ -28,7 +43,13 @@ function Images() {
               <img src={product.ImageUrl} />
               <div className={ImagesCss.options}>
                 <p>Edit</p>
-                <p>Delete</p>
+                <p
+                  onClick={() => {
+                    deleteProduct(product.id);
+                  }}
+                >
+                  Delete
+                </p>
               </div>
             </div>
           );
@@ -36,7 +57,7 @@ function Images() {
       </div>
       <div className={ImagesCss.loadBtn}>
         <button
-        style={shownImages > images.length ?{display:"none"}:{}}
+          style={shownImages > images.length ? { display: "none" } : {}}
           onClick={() => {
             setShownImages(shownImages + 4);
           }}

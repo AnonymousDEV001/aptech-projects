@@ -22,7 +22,6 @@ function ProductSection() {
         specifications: JSON.parse(product[0].Specifications),
         additionalFeatures: JSON.parse(product[0].AdditionalFeatures),
       });
-      console.log(extraDetails.specifications);
     }
   }, [productDetails]);
 

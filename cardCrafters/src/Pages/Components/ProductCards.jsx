@@ -17,7 +17,7 @@ function ProductCards() {
     if (state.productDetails.products === null) {
       dispatch(fetchProducts());
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (state.productDetails.products !== null) {

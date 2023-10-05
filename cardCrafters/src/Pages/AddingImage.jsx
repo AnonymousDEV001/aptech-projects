@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImagesCss from "./Components/Css/Images.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useParams,useNavigate  } from "react-router-dom";
 import {
   addSpecifications,
   removeSpecifications,
@@ -8,56 +9,156 @@ import {
   addAdditionalFeature,
   updateAdditionalFeature,
   removeAdditionalFeature,
+  cleanSpecifications,
+  cleanAdditionalFeatures,
+  addAndUpdateSpecifications,
+  addAndUpdateAdditionalFeatures,
 } from "../ReduxStore/Reducers/addProductSlice";
 
+import { productAdd,productUpdate } from "../ReduxStore/Reducers/productSlice";
+
 export default function AddingImage() {
+  const location = useLocation();
+  const params = useParams();
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
+  //for adding product
   const state = useSelector((state) => state.addProduct);
 
+  //for updating product
+  const products = useSelector(
+    (state) => state.productFetch.productDetails.products
+  );
+
+  // for both adding and updating products
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [catagory, setCatagory] = useState("");
+  const [error, setError] = useState("");
 
+  useEffect(() => {
+    //for user to updating product details
+
+    if (location.pathname === `/updateproduct/${params.id}`) {
+      if (products !== null) {
+        //filling form fields
+
+        let product = products.filter((product) => product.id == params.id);
+        setTitle(product[0].Title);
+        setDescription(product[0].Description);
+        setImageUrl(product[0].ImageUrl);
+        setCatagory(product[0].Catagory);
+        let specifications = JSON.parse(product[0].Specifications);
+        let additionalFeatures = JSON.parse(product[0].AdditionalFeatures);
+
+        dispatch(addAndUpdateSpecifications(specifications));
+        dispatch(addAndUpdateAdditionalFeatures(additionalFeatures));
+      }
+    }
+  }, [products]);
+
+  //for both adding and updating products
   const uploadProduct = async (e) => {
     try {
+      let pass = true;
       e.preventDefault();
       if (
         title === "" ||
         description === "" ||
         imageUrl === "" ||
         catagory === "Catagory" ||
-        state.specifications.lenght === 0 ||
+        state.specifications.length === 0 ||
         state.additionalFeatures.length === 0
       ) {
-        return;
+        return setError("Please fill all fields");
       }
+
+      state.specifications.forEach((element) => {
+        if (element.value === "") {
+          pass = false;
+        }
+      });
+      if (!pass) {
+        return setError("Please fill all fields");
+      }
+      //for adding products
       let url = "http://127.0.0.1:8000/upload/";
-      let response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      let method = "POST"
+      let body = JSON.stringify({
+        Title: title,
+        Description: description,
+        ImageUrl: imageUrl,
+        Catagory: catagory,
+        Specifications: JSON.stringify(state.specifications),
+        AdditionalFeatures: JSON.stringify(state.additionalFeatures),
+      });
+
+      //for updating products
+      if (location.pathname === `/updateproduct/${params.id}`) {
+        url = "http://127.0.0.1:8000/updateproduct/";
+        method = "PUT"
+        body = JSON.stringify({
+          id: parseInt(params.id),
           Title: title,
           Description: description,
           ImageUrl: imageUrl,
           Catagory: catagory,
           Specifications: JSON.stringify(state.specifications),
           AdditionalFeatures: JSON.stringify(state.additionalFeatures),
-        }),
+        });
+      }
+
+      let response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: body,
       });
-      console.log(await response.json());
+
+      setError("");
+      response = await response.json();
+      response = await JSON.parse(response.product);
+
+      alert(
+        `Product Sucessfully ${
+          location.pathname === `/updateproduct/${params.id}`
+            ? `Updated`
+            : `Added`
+        }`
+      );
+      
+      setTitle("");
+      setDescription("");
+      setImageUrl("");
+      setCatagory("Catagory");
+      dispatch(cleanSpecifications([]));
+      dispatch(cleanAdditionalFeatures([]));
+      response[0].fields.id = response[0].pk;
+      
+      //for adding product for dashboard if user was adding product instead of updating product
+      if(location.pathname === "/addimage"){
+        dispatch(productAdd(response[0].fields));
+      }
+      navigate('/dashboard');
     } catch (error) {
+      setError("Some error occurred");
       console.log(error.message);
     }
   };
 
   return (
     <div className={ImagesCss.addingImage}>
-      <h3 className="active">Add Product</h3>
+      <h3 className="active">{location.pathname === `/updateproduct/${params.id}`?"Uodate Product":`Add Product`}</h3>
 
-      <form onSubmit={uploadProduct}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <input
           placeholder="Title"
           onChange={(e) => {
@@ -81,6 +182,7 @@ export default function AddingImage() {
           placeholder="Image Url"
         />
         <select
+          value={catagory}
           onChange={(e) => {
             setCatagory(e.target.value);
           }}
@@ -94,13 +196,13 @@ export default function AddingImage() {
           <option value="Thank You">Thank You</option>
         </select>
         <div className={`flex ${ImagesCss.specifications}`}>
-          {state.specifications.map((specification) => (
-            <div className={ImagesCss.specificationInput}>
+          {state.specifications.map((specification, index) => (
+            <div key={index} className={ImagesCss.specificationInput}>
               <span
                 onClick={() => {
                   dispatch(removeSpecifications(specification.id));
                 }}
-                class={`material-symbols-outlined ${ImagesCss.close}`}
+                className={`material-symbols-outlined ${ImagesCss.close}`}
               >
                 cancel
               </span>
@@ -129,13 +231,13 @@ export default function AddingImage() {
         </div>
 
         <div className={`flex ${ImagesCss.specifications}`}>
-          {state.additionalFeatures.map((feature) => (
-            <div className={ImagesCss.specificationInput}>
+          {state.additionalFeatures.map((feature, index) => (
+            <div key={index} className={ImagesCss.specificationInput}>
               <span
                 onClick={() => {
                   dispatch(removeAdditionalFeature(feature.id));
                 }}
-                class={`material-symbols-outlined ${ImagesCss.close}`}
+                className={`material-symbols-outlined ${ImagesCss.close}`}
               >
                 cancel
               </span>
@@ -162,7 +264,8 @@ export default function AddingImage() {
             Add Additional Features
           </button>
         </div>
-        <button>Save</button>
+        {error ? <p style={{ color: "red" }}>Error: {error}</p> : null}
+        <button onClick={uploadProduct}>Save</button>
       </form>
     </div>
   );

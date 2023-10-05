@@ -4,8 +4,8 @@ import json
 from django.http import JsonResponse
 from .models import *
 from django.conf import settings
-from django.core.mail import EmailMessage
 from django.core import serializers
+from django.core.mail import EmailMessage
 
 # Create your views here.
 
@@ -57,8 +57,14 @@ def uploadProduct(request):
         data = json.loads(request.body.decode('utf-8'))
 
         if data["Title"] and data["Description"] and data["ImageUrl"] and data["Catagory"] and data["Specifications"] and data["AdditionalFeatures"]:
-            uploadProducts_model.objects.create(Title=data["Title"], Description = data["Description"] , ImageUrl = data["ImageUrl"] , Catagory=data["Catagory"],Specifications=data["Specifications"],AdditionalFeatures = data["AdditionalFeatures"])
-            return JsonResponse({"Sucess" : "Product Uploaded"})
+            product = uploadProducts_model.objects.create(Title=data["Title"], Description = data["Description"] , ImageUrl = data["ImageUrl"] , Catagory=data["Catagory"],Specifications=data["Specifications"],AdditionalFeatures = data["AdditionalFeatures"])
+
+
+            product = serializers.serialize("json",[product])
+
+            return JsonResponse({"Sucess" : "Product Uploaded",
+                                 "product" : product
+                                 })
         
 
         return JsonResponse({"Error":"Enter all fields"})
@@ -68,3 +74,35 @@ def getProducts(request):
     if request.method == "GET":
         data = list(uploadProducts_model.objects.values())
         return JsonResponse(data, safe=False)
+    
+
+def deleteProduct(request):
+    if request.method == "DELETE":
+        data = json.loads(request.body.decode("utf-8"))
+        if data["id"]:
+            deletedProduct = uploadProducts_model.objects.get(id=data["id"])
+            deletedProduct.delete()
+            return JsonResponse({"Success" : "Product Deleted Sucessfully"})
+        return JsonResponse({"Error":"Invalid Arguments"})
+    
+
+def updateProduct(request):
+    if request.method == "PUT":
+        data = json.loads(request.body.decode("utf-8"))
+        if data["id"] and data["Title"] and data["Description"] and data["ImageUrl"] and data["Catagory"] and data["Specifications"] and data["AdditionalFeatures"]:
+            updateProduct = uploadProducts_model.objects.get(id=data["id"])
+            updateProduct.Title = data["Title"]
+            updateProduct.Description = data["Description"]
+            updateProduct.ImageUrl = data["ImageUrl"]
+            updateProduct.Catagory = data["Catagory"]
+            updateProduct.Specifications = data["Specifications"]
+            updateProduct.AdditionalFeatures = data["AdditionalFeatures"]
+
+            updateProduct.save()
+            
+            product = serializers.serialize("json",[updateProduct])
+            return JsonResponse({"Sucess" : "Product Updated",
+                                 "product" : product
+                                 })
+        return JsonResponse({"Error":"Invalid Arguments"})
+    

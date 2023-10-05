@@ -29,6 +29,9 @@
     height: 100%;
     border-radius: 1rem;
 }
+.options p{
+    cursor: pointer;
+}
 .options{
     position: absolute;
     bottom: 0;
