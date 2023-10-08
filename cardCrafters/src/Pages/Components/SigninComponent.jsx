@@ -1,57 +1,48 @@
-import React,{useState} from 'react'
-import SigninComponentCss from './Css/SigninComponent.module.css'
+import React, { useEffect, useState } from "react";
+import SigninComponentCss from "./Css/SigninComponent.module.css";
+import { useDispatch } from "react-redux";
+import { fetchAuth } from "../../ReduxStore/Reducers/authSlice";
 
 function SigninComponent(e) {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      let url = "http://127.0.0.1:8000/";
-      let data = {
-        "email": email,
-        "password":password
-      };
-  
-      await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-      .then(response => response.json()) // Assuming you want to parse the response as JSON
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch(error => {
-        console.error('Error:', error.message);
-      });
-  
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
+    dispatch(fetchAuth({ username: email, password: password }));
   };
-  
 
-  
+
   return (
-    <div className='flex'>
+    <div className="flex">
       <div className={SigninComponentCss.left}></div>
       <div className={SigninComponentCss.right}>
         <div>
-        <h3 className='active'>Signin</h3>
-        <form onSubmit={handleSubmit}>
-            <input onChange={(e)=>{setEmail(e.target.value)}} value={email} type='email' placeholder='Email'/>
-            <input onChange={(e)=>{setPassword(e.target.value)}} value={password} type='password' placeholder='Password'/>
+          <h3 className="active">Signin</h3>
+          <form onSubmit={handleSubmit}>
+            <input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email}
+              type="text"
+              placeholder="Email"
+            />
+            <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              value={password}
+              type="password"
+              placeholder="Password"
+            />
             <button>Signin</button>
-        </form>
-      </div>
+          </form>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SigninComponent
+export default SigninComponent;

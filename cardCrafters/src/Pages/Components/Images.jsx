@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ImagesCss from "./Css/Images.module.css";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import {productRemove} from '../../ReduxStore/Reducers/productSlice'
+import { productRemove } from "../../ReduxStore/Reducers/productSlice";
 
 function Images() {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [images, setImages] = useState([]);
   const [shownImages, setShownImages] = useState(4);
 
   const state = useSelector((state) => state.productFetch);
+  const auth = useSelector((state) => state.auth.user);
 
   const deleteProduct = async (id) => {
-    const url = "http://127.0.0.1:8000/deleteproduct";
-    await fetch(url, {
-      method: "DELETE",
-      contentType: "application/json",
-      body: JSON.stringify({ id: id }),
-    });
+    try {
+      const url = "http://127.0.0.1:8000/deleteproduct";
+      await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + String(auth.access),
+        },
+        body: JSON.stringify({ id: id }),
+      });
+          } catch (error) {
+      console.log(error.message)
+    }
 
-    dispatch(productRemove(id))
+    dispatch(productRemove(id));
   };
 
   useEffect(() => {
@@ -42,7 +49,9 @@ function Images() {
             <div key={product.id} className={ImagesCss.imageCard}>
               <img src={product.ImageUrl} />
               <div className={ImagesCss.options}>
-                <p>Edit</p>
+                <Link to={`/updateproduct/${product.id}`}>
+                  <p>Edit</p>
+                </Link>
                 <p
                   onClick={() => {
                     deleteProduct(product.id);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ImagesCss from "./Components/Css/Images.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams,useNavigate  } from "react-router-dom";
+import { useLocation, useParams,useNavigate,Navigate  } from "react-router-dom";
 import {
   addSpecifications,
   removeSpecifications,
@@ -31,6 +31,7 @@ export default function AddingImage() {
   const products = useSelector(
     (state) => state.productFetch.productDetails.products
   );
+  const auth = useSelector((state)=>state.auth.user)
 
   // for both adding and updating products
   const [title, setTitle] = useState("");
@@ -115,6 +116,7 @@ export default function AddingImage() {
         method: method,
         headers: {
           "Content-Type": "application/json",
+          "Authorization":"Bearer " + String(auth.access)
         },
         body: body,
       });
@@ -149,6 +151,13 @@ export default function AddingImage() {
       console.log(error.message);
     }
   };
+  
+  //navigating if token does not exist
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (accessToken && JSON.parse(accessToken).access === undefined) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className={ImagesCss.addingImage}>

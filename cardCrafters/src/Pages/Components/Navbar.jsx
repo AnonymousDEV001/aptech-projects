@@ -3,11 +3,19 @@ import NavbarCss from "./Css/Navbar.module.css";
 import { Link,useLocation } from "react-router-dom";
 import logo from '../../assets/logo.svg'
 import flower1 from '../../assets/flower1.svg';
+import { useDispatch,useSelector } from "react-redux";
+import {emptyUser} from '../../ReduxStore/Reducers/authSlice'
 
 function Navbar() {
-  let location = useLocation()
+  const location = useLocation()
+  const dispatch = useDispatch()
   let [dropdown, setDropdownn] = useState(false);
   let refDropdown = useRef();
+  const handleLogout = ()=>{
+    dispatch(emptyUser(null))
+    localStorage.setItem("accessToken",JSON.stringify({}))
+
+  }
 
   const handleDropdown = () => {
     if (dropdown) {
@@ -52,7 +60,7 @@ function Navbar() {
       <div style={location.pathname == "/dashboard"?{display:"none"}:{}} className={`${NavbarCss.flower1}`}>
         <img src={flower1} alt="" />
       </div>
-      <div className="blank"></div>
+      <div className={NavbarCss.blank}><p onClick={handleLogout} style={location.pathname =="/dashboard"?{display:"block"}:{display:"none"}}>SIGN OUT</p></div>
     </nav>
   );
 }

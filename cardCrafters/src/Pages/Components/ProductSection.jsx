@@ -13,15 +13,19 @@ function ProductSection() {
   );
 
   useEffect(() => {
-    if (productDetails.products !== null) {
-      let product = productDetails.products.filter(
-        (product) => product.id == params.id
-      );
-      setProduct(product[0]);
-      setExtraDetails({
-        specifications: JSON.parse(product[0].Specifications),
-        additionalFeatures: JSON.parse(product[0].AdditionalFeatures),
-      });
+    try {
+      if (productDetails.products !== null) {
+        let product = productDetails.products.filter(
+          (product) => product.id == params.id
+        );
+        setProduct(product[0]);
+        setExtraDetails({
+          specifications: JSON.parse(product[0].Specifications),
+          additionalFeatures: JSON.parse(product[0].AdditionalFeatures),
+        });
+      }
+    } catch (error) {
+      console.log(error.message)
     }
   }, [productDetails]);
 

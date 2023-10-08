@@ -7,20 +7,36 @@ import MessagesSection from "./Components/MessagesSection";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsersMessages } from "../ReduxStore/Reducers/dashboardSlice";
 import { fetchProducts } from "../ReduxStore/Reducers/productSlice";
+import { Navigate } from "react-router-dom";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const usersMessages = useSelector((state) => state.dashboard.usersMessages);
-  const products = useSelector((state) => state.productFetch.productDetails.products);
+  const products = useSelector(
+    (state) => state.productFetch.productDetails.products
+  );
 
+  const auth = useSelector((state) => state.auth.user);
   useEffect(() => {
-    if (usersMessages === null) {
-      dispatch(fetchUsersMessages());
+    try {
+      if (usersMessages === null && auth !== null) {
+        console.log(auth.access);
+        dispatch(fetchUsersMessages(auth.access));
+      }
+
+      if (products === null) {
+        dispatch(fetchProducts());
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-    if (products === null) {
-      dispatch(fetchProducts());
-    }
-  }, []);
+  }, [auth]);
+
+  //navigating if token does not exist
+  const authToken = localStorage.getItem("accessToken");
+  if (authToken && JSON.parse(authToken).access === undefined) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div>

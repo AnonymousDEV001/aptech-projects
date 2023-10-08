@@ -32,17 +32,22 @@ const productSlice = createSlice({
     });
   },
   reducers:{
+    //for getting images by catagory
     productIdChange : (state, action)=>{
         state.productShow = action.payload
     },
+
+    //for deleting product from state
     productRemove:(state,action)=>{
       state.productDetails.products = state.productDetails.products.filter((product)=> product.id !== action.payload)
     },
+    //for adding product from state
     productAdd:(state,action)=>{
       if(state.productDetails.products !== null){
         state.productDetails.products.push(action.payload)
       }
     },
+    //for updating product in state
     productUpdate:(state,action)=>{
       if(state.productDetails.products !== null){
         state.productDetails.products = state.productDetails.products.map((product)=> product.id === action.payload.id ? action.payload.product: product)

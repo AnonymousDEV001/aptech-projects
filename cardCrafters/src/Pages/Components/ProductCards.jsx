@@ -20,6 +20,7 @@ function ProductCards() {
   }, []);
 
   useEffect(() => {
+    // filtering products by category
     if (state.productDetails.products !== null) {
       if (productShow === "All") {
         return setProducts(state.productDetails.products);

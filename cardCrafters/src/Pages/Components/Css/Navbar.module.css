@@ -38,3 +38,8 @@
   margin: 1rem;
   color: rgb(241, 241, 241);
 }
+.blank{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}

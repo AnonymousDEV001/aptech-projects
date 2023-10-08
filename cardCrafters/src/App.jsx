@@ -9,8 +9,37 @@ import Sigin from "./Pages/Sigin";
 import Dashboard from "./Pages/Dashboard";
 import AddingImage from "./Pages/AddingImage";
 import UpdateProduct from "./Pages/UpdateProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshAuth } from "./ReduxStore/Reducers/authSlice";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    // checking if auth tokens exists if yes then refreshing the token every 4 mins
+
+    try {
+    let token = localStorage.getItem("accessToken");
+    if (!token) {
+      localStorage.setItem("accessToken", JSON.stringify({}));
+    }
+    if (token && JSON.parse(token).access === undefined) {
+      return;
+    }
+      let interval = setInterval(() => {
+        dispatch(
+          refreshAuth(JSON.parse(localStorage.getItem("accessToken")).refresh)
+        );
+      }, 1000 * 60 * 4);
+
+      return () => clearInterval(interval);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [auth.user]);
+
   return (
     <BrowserRouter>
       <div className="container">

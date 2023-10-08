@@ -2,9 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUsersMessages = createAsyncThunk(
   "fetchUsersMessages",
-  async () => {
+  async (token) => {
     let url = "http://127.0.0.1:8000/contact/";
-    let users = await fetch(url);
+    let users = await fetch(url,{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization": "Bearer" + String(token)
+      }
+    });
     return await users.json();
   }
 );

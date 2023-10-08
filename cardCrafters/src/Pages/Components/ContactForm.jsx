@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ContactFormCss from "./Css/ContactForm.module.css";
+import { useDispatch,useSelector } from "react-redux";
+
 function ContactForm() {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const auth = useSelector((state)=>state.auth)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +16,11 @@ function ContactForm() {
 
       await fetch(url, {
         method: "POST",
-        contentType: "application/json",
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": "Bearer" + String(auth.user.access),
+
+        },
         body: JSON.stringify({
           Name: name,
           Email: email,

@@ -6,13 +6,13 @@ from .models import *
 from django.conf import settings
 from django.core import serializers
 from django.core.mail import EmailMessage
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
 def signin(request):
-    if request.method == "GET":
-        return HttpResponse("Nothing Here!")
-    elif request.method == "POST":
+    if request.method == "POST":
         data = json.loads(request.body.decode('utf-8'))
 
         user = user_model.objects.filter(Email=data['email'])
@@ -23,6 +23,8 @@ def signin(request):
 
         return JsonResponse({'Sucess': "USER VERIFIED"})
         
+
+@permission_classes([IsAuthenticated])
 def contact(request):
     if request.method == "GET":
         messages = list(contact_model.objects.values())
@@ -48,11 +50,8 @@ def contact(request):
         return JsonResponse({"Error":"Invalid arguments"})
 
 
-
+@permission_classes([IsAuthenticated])
 def uploadProduct(request):
-    if request.method == "GET":
-        return render(request , "upload.html")
-    
     if request.method == "POST":
         data = json.loads(request.body.decode('utf-8'))
 
@@ -75,7 +74,7 @@ def getProducts(request):
         data = list(uploadProducts_model.objects.values())
         return JsonResponse(data, safe=False)
     
-
+@permission_classes([IsAuthenticated])
 def deleteProduct(request):
     if request.method == "DELETE":
         data = json.loads(request.body.decode("utf-8"))
@@ -85,7 +84,7 @@ def deleteProduct(request):
             return JsonResponse({"Success" : "Product Deleted Sucessfully"})
         return JsonResponse({"Error":"Invalid Arguments"})
     
-
+@permission_classes([IsAuthenticated])
 def updateProduct(request):
     if request.method == "PUT":
         data = json.loads(request.body.decode("utf-8"))
