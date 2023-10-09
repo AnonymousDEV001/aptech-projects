@@ -68,14 +68,20 @@
     gap: 1rem;
     flex-direction:column;
 }
+.addingImage form img{
+    width: 3rem;
+}
 .addingImage button{
-    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #0085FF;
     border-radius:0.5rem;
     border: none;
     color:white;
     margin:1rem 0;
-    width: 10%;
+    width: 5rem;
+    height: 3rem;
 }
 .addingImage input{
     padding: 1rem;

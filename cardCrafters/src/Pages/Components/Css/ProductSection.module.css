@@ -61,6 +61,7 @@
 .valueButton {
   padding: 1rem;
   background-color: rgba(211, 211, 211, 0.289);
+  cursor: pointer;
 }
 .decrease {
   border-radius: 0.6rem 0 0 0.6rem;

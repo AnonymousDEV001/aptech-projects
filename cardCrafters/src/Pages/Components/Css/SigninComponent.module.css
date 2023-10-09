@@ -1,7 +1,28 @@
 .left{
     width: 35%;
-    background-color: #95a9ff;
+    /* background-color: #95a9ff; */
+    background-image: url("../../../assets//sun-tornado.svg");
+    background-repeat: none;
+    background-size: cover;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.left h3{
+    font-size: 2rem;
+    color: white;
+}
+.wlcmSignin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem;
+}
+.wlcmSignin p{
+    margin: 1rem 0;
+    color: white;
 }
 .right{
     display: flex;
@@ -22,13 +43,20 @@
     margin: 0.3rem 0;
     border-radius: 0.2rem;
 }
+.right form input:focus{
+    outline: #0085FF solid 2px;
+}
 .right form button{
     padding: 0.7rem 1rem;
     width: 7rem;
-    background-color:#7790ff;
+    background-color:#6581fd;
     border: none;
     border-radius: 0.5rem;
     color: white;
+    cursor: pointer;
+}.right form button:hover{
+    
+    background-color:#4567ff;
 }
 .right h3{
     font-size: 2rem;

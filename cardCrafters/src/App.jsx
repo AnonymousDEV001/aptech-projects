@@ -17,6 +17,11 @@ function App() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
+  useEffect(()=>{
+    dispatch(
+      refreshAuth(JSON.parse(localStorage.getItem("accessToken")).refresh)
+    );
+  },[])
   useEffect(() => {
     // checking if auth tokens exists if yes then refreshing the token every 4 mins
 

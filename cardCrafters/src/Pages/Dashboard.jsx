@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import Navbar from "./Components/Navbar";
 import DashboardSection from "./Components/DashboardSection";
 import Statistics from "./Components/Statistics";
@@ -10,6 +10,16 @@ import { fetchProducts } from "../ReduxStore/Reducers/productSlice";
 import { Navigate } from "react-router-dom";
 
 function Dashboard() {
+  
+  let fade = useRef();
+  useEffect(() => {
+    scrollTo(0,0)
+    // Using setTimeout to apply opacity change after a short delay
+    setTimeout(() => {
+      fade.current.style.opacity = "1";
+    }, 100); // Adjust the delay as needed
+  }, []);
+
   const dispatch = useDispatch();
   const usersMessages = useSelector((state) => state.dashboard.usersMessages);
   const products = useSelector(
@@ -20,7 +30,6 @@ function Dashboard() {
   useEffect(() => {
     try {
       if (usersMessages === null && auth !== null) {
-        console.log(auth.access);
         dispatch(fetchUsersMessages(auth.access));
       }
 
@@ -39,7 +48,7 @@ function Dashboard() {
   }
 
   return (
-    <div>
+    <div style={{ opacity: "0", transition: "all 1.5s" }} ref={fade}>
       <Navbar />
       <DashboardSection />
       <Statistics />

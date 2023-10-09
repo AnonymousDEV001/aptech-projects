@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import ContactFormCss from "./Css/ContactForm.module.css";
 import { useDispatch,useSelector } from "react-redux";
+import Loading from "./Loading";
 
 function ContactForm() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const auth = useSelector((state)=>state.auth)
+  const [loading,setLoading] = useState(false)
+  const [error,setError] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("")
+    if(name === "" || email==="" ||message ===""){
+      return
+    }
+    setLoading(true)
     try {
       let url = "http://127.0.0.1:8000/contact/";
 
@@ -18,8 +25,6 @@ function ContactForm() {
         method: "POST",
         headers:{
           "Content-Type": "application/json",
-          "Authorization": "Bearer" + String(auth.user.access),
-
         },
         body: JSON.stringify({
           Name: name,
@@ -27,9 +32,13 @@ function ContactForm() {
           Message: message,
         }),
       });
+      setName("")
+      setEmail("")
+      setMessage("")
     } catch (error) {
-      console.log(error.message);
+      setError("Something went wrong")
     }
+    setLoading(false)
   };
 
   return (
@@ -45,6 +54,7 @@ function ContactForm() {
             value={name}
             type="text"
             placeholder="Name"
+            required
           />
           <input
             onChange={(e) => {
@@ -53,6 +63,7 @@ function ContactForm() {
             value={email}
             type="email"
             placeholder="Email"
+            required
           />
           <textarea
             onChange={(e) => {
@@ -60,8 +71,10 @@ function ContactForm() {
             }}
             value={message}
             placeholder="Message"
+            required
           />
-          <button>Send Message</button>
+          {error !== "" && <p style={{color:"red"}}>{error}</p>}
+          <button>{loading ? <Loading style/>:"Send Message" }</button>
         </form>
         <div className={`${ContactFormCss.ContactDetails} flex column`}>
           <h4>Contact</h4>

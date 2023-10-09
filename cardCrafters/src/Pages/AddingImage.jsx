@@ -16,6 +16,7 @@ import {
 } from "../ReduxStore/Reducers/addProductSlice";
 
 import { productAdd,productUpdate } from "../ReduxStore/Reducers/productSlice";
+import Loading from "./Components/Loading";
 
 export default function AddingImage() {
   const location = useLocation();
@@ -39,10 +40,11 @@ export default function AddingImage() {
   const [imageUrl, setImageUrl] = useState("");
   const [catagory, setCatagory] = useState("");
   const [error, setError] = useState("");
+  const [loading,setLoading] = useState(false)
 
   useEffect(() => {
     //for user to updating product details
-
+    
     if (location.pathname === `/updateproduct/${params.id}`) {
       if (products !== null) {
         //filling form fields
@@ -60,9 +62,10 @@ export default function AddingImage() {
       }
     }
   }, [products]);
-
+  
   //for both adding and updating products
   const uploadProduct = async (e) => {
+    setLoading(true)
     try {
       let pass = true;
       e.preventDefault();
@@ -74,6 +77,7 @@ export default function AddingImage() {
         state.specifications.length === 0 ||
         state.additionalFeatures.length === 0
       ) {
+        setLoading(false)
         return setError("Please fill all fields");
       }
 
@@ -83,6 +87,7 @@ export default function AddingImage() {
         }
       });
       if (!pass) {
+        setLoading(false)
         return setError("Please fill all fields");
       }
       //for adding products
@@ -150,6 +155,7 @@ export default function AddingImage() {
       setError("Some error occurred");
       console.log(error.message);
     }
+    setLoading(false)
   };
   
   //navigating if token does not exist
@@ -274,7 +280,7 @@ export default function AddingImage() {
           </button>
         </div>
         {error ? <p style={{ color: "red" }}>Error: {error}</p> : null}
-        <button onClick={uploadProduct}>Save</button>
+        <button onClick={uploadProduct}> {loading ? <Loading/> : "Save"}</button>
       </form>
     </div>
   );

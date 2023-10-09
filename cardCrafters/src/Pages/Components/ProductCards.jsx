@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import productCardsCss from "./Css/ProductCards.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "./Loading";
 import {
   fetchProducts,
   productIdChange,
@@ -9,10 +10,11 @@ import { Link } from "react-router-dom";
 
 function ProductCards() {
   const dispatch = useDispatch();
+
   const state = useSelector((state) => state.productFetch);
   const [products, setProducts] = useState([]);
   const productShow = state.productShow;
-
+  
   useEffect(() => {
     if (state.productDetails.products === null) {
       dispatch(fetchProducts());
@@ -137,6 +139,12 @@ function ProductCards() {
           </button>
         </div>
         <div className={productCardsCss.row}>
+          {state.productDetails.loading && <Loading />}
+          {state.productDetails.errors !== "" && (
+            <h3 style={{ textAlign: "center", width: "100%" }}>
+              Something Went Wrong
+            </h3>
+          )}
           {products &&
             [1, 2, 3, 4].map((product, index) => {
               const startingIndex = (products.length / 4) * index;
@@ -149,7 +157,7 @@ function ProductCards() {
                   <div className={productCardsCss.imageContainer}>
                     {columnProducts.map((nextProduct) => (
                       <Link to={`/product/${nextProduct.id}`}>
-                        <img 
+                        <img
                           key={nextProduct.id} // Assuming `nextProduct.id` is unique
                           src={nextProduct.ImageUrl}
                         />

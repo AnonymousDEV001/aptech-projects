@@ -150,6 +150,9 @@ function ProductSection() {
                 className={`${ProductCss.valueButton}  ${ProductCss.decrease}`}
                 id="decrease"
                 onClick={() => {
+                  if(quantity===0){
+                    return
+                  }
                   setQuantity(quantity - 1);
                 }}
               >

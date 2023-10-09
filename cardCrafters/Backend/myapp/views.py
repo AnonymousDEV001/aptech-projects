@@ -6,25 +6,22 @@ from .models import *
 from django.conf import settings
 from django.core import serializers
 from django.core.mail import EmailMessage
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
+
+
+from rest_framework.permissions import BasePermission
 
 # Create your views here.
 
-def signin(request):
-    if request.method == "POST":
-        data = json.loads(request.body.decode('utf-8'))
+class IsAuthenticatedOrReadOnlyForGet(BasePermission):
+    def has_permission(self, request, view):
+        if request.method == 'GET':
+            return request.user and request.user.is_authenticated
+        return True
 
-        user = user_model.objects.filter(Email=data['email'])
-        if not user:
-            return JsonResponse({"message":"Invalid Credentials"})
-        if user[0].Password != data["password"]:
-            return JsonResponse({"message":"Invalid Credentials"})
-
-        return JsonResponse({'Sucess': "USER VERIFIED"})
-        
-
-@permission_classes([IsAuthenticated])
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnlyForGet])
 def contact(request):
     if request.method == "GET":
         messages = list(contact_model.objects.values())
@@ -49,7 +46,7 @@ def contact(request):
                 return JsonResponse({"Sucess":"Message Sucessfully Sent"})
         return JsonResponse({"Error":"Invalid arguments"})
 
-
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def uploadProduct(request):
     if request.method == "POST":
@@ -74,6 +71,7 @@ def getProducts(request):
         data = list(uploadProducts_model.objects.values())
         return JsonResponse(data, safe=False)
     
+@api_view(['DELETE']) 
 @permission_classes([IsAuthenticated])
 def deleteProduct(request):
     if request.method == "DELETE":
@@ -84,6 +82,7 @@ def deleteProduct(request):
             return JsonResponse({"Success" : "Product Deleted Sucessfully"})
         return JsonResponse({"Error":"Invalid Arguments"})
     
+@api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def updateProduct(request):
     if request.method == "PUT":

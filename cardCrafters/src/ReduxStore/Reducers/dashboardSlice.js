@@ -8,7 +8,7 @@ export const fetchUsersMessages = createAsyncThunk(
       method:"GET",
       headers:{
         "Content-Type":"application/json",
-        "Authorization": "Bearer" + String(token)
+        "Authorization": "Bearer " + String(token)
       }
     });
     return await users.json();

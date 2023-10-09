@@ -7,6 +7,9 @@
   min-height: 6rem;
   margin: 0 3.5rem;
 }
+.navigation a{
+  color: black;
+}
 .logo img {
   height: 4rem;
   margin-right: 0.5rem;

@@ -21,10 +21,12 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state, action) => {
       state.productDetails.loading = true;
+      state.productDetails.errors = ""
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.productDetails.loading = false;
       state.productDetails.products = action.payload;
+      state.productDetails.errors = ""
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.productDetails.errors = action.payload;

@@ -33,6 +33,7 @@
     border-radius: 0.4rem;
     color: white;
     margin: 2rem 0.5rem;
+    cursor: pointer;
 }
 .active{
     background-color: #0085FF;

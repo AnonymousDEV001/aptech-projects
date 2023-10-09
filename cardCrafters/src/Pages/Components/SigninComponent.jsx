@@ -16,7 +16,12 @@ function SigninComponent(e) {
 
   return (
     <div className="flex">
-      <div className={SigninComponentCss.left}></div>
+      <div className={SigninComponentCss.left}>
+        <div className={SigninComponentCss.wlcmSignin}>
+        <h3>Welcome back! It's great to see you again!"</h3>
+        <p>Enter your credentials below to access your account.</p>
+        </div>
+      </div>
       <div className={SigninComponentCss.right}>
         <div>
           <h3 className="active">Signin</h3>
@@ -28,6 +33,7 @@ function SigninComponent(e) {
               value={email}
               type="text"
               placeholder="Email"
+              required
             />
             <input
               onChange={(e) => {
@@ -36,6 +42,7 @@ function SigninComponent(e) {
               value={password}
               type="password"
               placeholder="Password"
+              required
             />
             <button>Signin</button>
           </form>

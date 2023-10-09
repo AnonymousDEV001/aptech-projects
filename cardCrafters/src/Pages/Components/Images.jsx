@@ -20,7 +20,7 @@ function Images() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer" + String(auth.access),
+          "Authorization": "Bearer " + String(auth.access),
         },
         body: JSON.stringify({ id: id }),
       });

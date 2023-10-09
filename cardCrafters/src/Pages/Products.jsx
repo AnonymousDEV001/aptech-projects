@@ -5,6 +5,8 @@ import ProductCards from "./Components/ProductCards";
 import Footer from "./Components/Footer";
 
 function Products() {
+
+
   let fade = useRef();
   useEffect(() => {
     // Using setTimeout to apply opacity change after a short delay
@@ -22,7 +24,9 @@ function Products() {
           para="Welcome to our curated collection of handcrafted cards. Each card is a testament to our dedication to creativity, quality, and heartfelt expression. Whether you're looking for the perfect birthday card, a touching anniversary message, or a festive holiday greeting, you'll find it here. Explore our selection below and discover the art of meaningful connections through beautifully crafted cards."
         />
       </div>
-      <ProductCards />
+      <div className="flex center column">
+      <ProductCards />      
+      </div>
       <Footer />
     </div>
   );
