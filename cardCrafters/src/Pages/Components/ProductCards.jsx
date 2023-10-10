@@ -13,8 +13,9 @@ function ProductCards() {
 
   const state = useSelector((state) => state.productFetch);
   const [products, setProducts] = useState([]);
+  const [colums, setColums] = useState([]);
   const productShow = state.productShow;
-  
+
   useEffect(() => {
     if (state.productDetails.products === null) {
       dispatch(fetchProducts());
@@ -22,15 +23,31 @@ function ProductCards() {
   }, []);
 
   useEffect(() => {
-    // filtering products by category
     if (state.productDetails.products !== null) {
-      if (productShow === "All") {
-        return setProducts(state.productDetails.products);
+      // filtering products by category
+      if (productShow !== "All") {
+        let newProducts = state.productDetails.products.filter(
+          (product) => product.Catagory === productShow
+        );
+        return setProducts(newProducts);
       }
-      let newProducts = state.productDetails.products.filter(
-        (product) => product.Catagory === productShow
-      );
-      setProducts(newProducts);
+      // calculating colums
+      let length = 0;
+      if (state.productDetails.products.length > 4) {
+        length = 4;
+      }
+      if (state.productDetails.products.length < 4) {
+        length = state.productDetails.products.length;
+      }
+      const array = [];
+      Array.from(Array(length)).forEach((_, index) => {
+        array.push(index);
+      });
+
+      setColums(array);
+
+      //showig all products
+      setProducts(state.productDetails.products);
     }
   }, [state, productShow]);
 
@@ -49,7 +66,7 @@ function ProductCards() {
       </div>
 
       <div className={productCardsCss.gallery}>
-        <div>
+        <div className={productCardsCss.buttons}>
           <button
             style={
               productShow === "All" ? { backgroundColor: "#0085FF" } : null
@@ -146,21 +163,21 @@ function ProductCards() {
             </h3>
           )}
           {products &&
-            [1, 2, 3, 4].map((product, index) => {
-              const startingIndex = (products.length / 4) * index;
-              const endingIndex = (products.length / 4) * (index + 1);
+            colums.map((product, index) => {
+              const startingIndex = (products.length / colums.length) * index;
+              const endingIndex =
+                (products.length / colums.length) * (index + 1);
 
               let columnProducts = products.slice(startingIndex, endingIndex);
-
               return (
-                <div className={productCardsCss.column}>
+                <div key={index} className={productCardsCss.column}>
                   <div className={productCardsCss.imageContainer}>
                     {columnProducts.map((nextProduct) => (
-                      <Link to={`/product/${nextProduct.id}`}>
-                        <img
-                          key={nextProduct.id} // Assuming `nextProduct.id` is unique
-                          src={nextProduct.ImageUrl}
-                        />
+                      <Link
+                        key={nextProduct.id}
+                        to={`/product/${nextProduct.id}`}
+                      >
+                        <img src={nextProduct.ImageUrl} />
                       </Link>
                     ))}
                   </div>

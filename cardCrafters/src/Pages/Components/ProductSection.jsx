@@ -116,7 +116,11 @@ function ProductSection() {
       <div class={ProductCss.imgZoomContainer}>
         <div className={ProductCss.imgZoomLens} id="img-zoom-lens-id"></div>
         <img
-          onMouseOver={showMag}
+          onMouseOver={()=>{
+            let width = window.innerWidth
+            if(width < 1200) return 
+            showMag()
+          }}
           onMouseOut={hideMag}
           id="myimage"
           src={product.ImageUrl}

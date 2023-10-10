@@ -18,10 +18,12 @@
 
 
 
-
-
-
-
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 .gallery{
     margin: 4rem;
     width: 90%;
@@ -32,13 +34,14 @@
     border: none;
     border-radius: 0.4rem;
     color: white;
-    margin: 2rem 0.5rem;
+    margin: 0rem 0.5rem;
     cursor: pointer;
 }
 .active{
     background-color: #0085FF;
 }
   .row {
+    margin: 2rem 0;
     display: -ms-flexbox; /* IE10 */
     display: flex;
     -ms-flex-wrap: wrap; /* IE10 */
@@ -67,6 +70,15 @@
       -ms-flex: 50%;
       flex: 50%;
       max-width: 50%;
+    }
+    .button{
+      margin: 0.4rem 0.7rem;
+    }
+    .productCards h3{
+      font-size: 1.5rem;
+    }
+    .productCards p{
+      font-size: 0.9rem;
     }
   }
   

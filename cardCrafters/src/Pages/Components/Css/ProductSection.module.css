@@ -32,12 +32,13 @@
 
 .productSection {
   justify-content: space-between;
+  
 }
 .productDetails {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 90%;
   margin: 0 1rem;
 }
 .description {
@@ -89,4 +90,21 @@
   background-color: #4665ffab;
   color: white;
   
+}
+
+@media only screen and (max-width:1200px){
+  .imgZoomContainer{
+    width: 90%;
+    margin: 0;
+  }
+  .imgZoomContainer img{
+    width: 100%;
+    height: auto;
+  }
+  .productSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 }

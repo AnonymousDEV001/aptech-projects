@@ -44,3 +44,20 @@
   }
   
   
+
+  @media only screen and (max-width:800px){
+    .promisesTest h3 {
+      font-size: 2rem;
+    }
+    .promisesTest{
+      width: 80%;
+      margin: 0;
+      align-items: center;
+    }
+    .promises{
+      justify-content: center;
+    }
+    .flower2{
+      display: none;
+    }
+  }

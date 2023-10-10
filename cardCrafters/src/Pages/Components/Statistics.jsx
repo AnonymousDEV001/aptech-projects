@@ -22,6 +22,7 @@ function Statistics() {
   }, [usersMessages, products]);
 
   return (
+    <div className="flex center">
     <div className={`${StatisticsCss.heading}`}>
       <h3 className={`active`}>Statistics</h3>
       <div className={StatisticsCss.cards}>
@@ -38,6 +39,7 @@ function Statistics() {
           <p>{details.totalImages}</p>
         </div>
       </div>
+    </div>
     </div>
   );
 }

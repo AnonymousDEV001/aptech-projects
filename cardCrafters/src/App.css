@@ -29,6 +29,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Mooli", sans-serif;
+  /* outline: 1px solid black; */
 }
 a {
   text-decoration: none;
@@ -67,4 +68,10 @@ body {
   /* background-color: #f3f3f3; */
   background-color: #dee4ffab;
   min-height: 30rem;
+}
+.wrap{
+  flex-wrap: wrap;
+}
+.w-90{
+  width: 90%;
 }

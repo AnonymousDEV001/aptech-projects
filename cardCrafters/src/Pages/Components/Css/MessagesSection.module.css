@@ -1,5 +1,6 @@
 .messageSection{
-    margin: 3rem 7rem;
+    /* margin: 3rem 7rem; */
+    width: 85%;
     font-size: 1.5rem;
 }
 .messageSection h3{
@@ -37,4 +38,10 @@
     border: none;
     color:white;
     margin:1rem 0;
+}
+
+@media only screen and (max-width:800px){
+    .messageCard{
+        padding: 2rem;
+    }
 }

@@ -16,3 +16,14 @@
     text-align: center;
   }
   
+  
+@media only screen and (max-width: 800px) {
+  .eventsHeading h3 {
+    width: 90%;
+    font-size: 1.5rem;
+  }
+  .eventsHeading p {
+    width: 90%;
+  }
+
+}

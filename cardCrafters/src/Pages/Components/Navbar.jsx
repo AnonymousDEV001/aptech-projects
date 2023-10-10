@@ -57,7 +57,7 @@ function Navbar() {
           </div>
         </ul>
       </div>
-      <div style={location.pathname == "/dashboard"?{display:"none"}:{}} className={`${NavbarCss.flower1}`}>
+      <div  style={location.pathname == "/dashboard"?{display:"none"}:{}} className={`${NavbarCss.flower1} ${NavbarCss.sideFlower}`}>
         <img src={flower1} alt="" />
       </div>
       <div className={NavbarCss.blank}><p onClick={handleLogout} style={location.pathname =="/dashboard"?{display:"block",cursor:"pointer"}:{display:"none"}}>SIGN OUT</p></div>

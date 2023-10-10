@@ -88,7 +88,7 @@ const authSlice = createSlice({
 
     //For refreshing Tokens
     builder.addCase(refreshAuth.pending, (state, action) => {
-      state.loading = true;
+      state.error = null
     });
     builder.addCase(refreshAuth.fulfilled, (state, action) => {
       state.loading = false;
@@ -97,6 +97,7 @@ const authSlice = createSlice({
         refresh: JSON.parse(localStorage.getItem("accessToken")).refresh,
       };
       state.user = token;
+      state.error = null
     });
     builder.addCase(refreshAuth.rejected, (state, action) => {
       state.loading = false;

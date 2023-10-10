@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SigninComponentCss from "./Css/SigninComponent.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchAuth } from "../../ReduxStore/Reducers/authSlice";
+import Loading from "./Loading";
 
 function SigninComponent(e) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const auth = useSelector((state)=>state.auth)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(fetchAuth({ username: email, password: password }));
+    console.log(auth.loading)
   };
 
 
   return (
-    <div className="flex">
+    <div className="flex wrap">
       <div className={SigninComponentCss.left}>
         <div className={SigninComponentCss.wlcmSignin}>
         <h3>Welcome back! It's great to see you again!"</h3>
@@ -23,9 +27,9 @@ function SigninComponent(e) {
         </div>
       </div>
       <div className={SigninComponentCss.right}>
-        <div>
+        <div  className="flex column center w-90">
           <h3 className="active">Signin</h3>
-          <form onSubmit={handleSubmit}>
+          <form className={SigninComponentCss.form} onSubmit={handleSubmit}>
             <input
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -44,7 +48,10 @@ function SigninComponent(e) {
               placeholder="Password"
               required
             />
-            <button>Signin</button>
+            <div className={SigninComponentCss.formBtn}>
+            {auth.error !== null && <p style={{color:"red"}}>Something went wrong</p>}
+            <button>{auth.loading ? <Loading/> : "Signin" }</button>
+            </div>
           </form>
         </div>
       </div>

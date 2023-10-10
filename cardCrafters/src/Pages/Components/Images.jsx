@@ -38,6 +38,7 @@ function Images() {
   }, [state]);
 
   return (
+    <div className="flex center">
     <div className={ImagesCss.images}>
       <h3 className="active">Images</h3>
       <Link to={"/addimage"}>
@@ -74,6 +75,7 @@ function Images() {
           LOAD MORE
         </button>
       </div>
+    </div>
     </div>
   );
 }

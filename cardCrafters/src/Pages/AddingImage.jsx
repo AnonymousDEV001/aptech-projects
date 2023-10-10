@@ -15,7 +15,7 @@ import {
   addAndUpdateAdditionalFeatures,
 } from "../ReduxStore/Reducers/addProductSlice";
 
-import { productAdd,productUpdate } from "../ReduxStore/Reducers/productSlice";
+import { productAdd } from "../ReduxStore/Reducers/productSlice";
 import Loading from "./Components/Loading";
 
 export default function AddingImage() {
@@ -166,6 +166,7 @@ export default function AddingImage() {
   }
 
   return (
+    <div className="flex center">
     <div className={ImagesCss.addingImage}>
       <h3 className="active">{location.pathname === `/updateproduct/${params.id}`?"Uodate Product":`Add Product`}</h3>
 
@@ -282,6 +283,7 @@ export default function AddingImage() {
         {error ? <p style={{ color: "red" }}>Error: {error}</p> : null}
         <button onClick={uploadProduct}> {loading ? <Loading/> : "Save"}</button>
       </form>
+    </div>
     </div>
   );
 }

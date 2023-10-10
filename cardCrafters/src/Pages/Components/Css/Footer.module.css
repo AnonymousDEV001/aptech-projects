@@ -11,6 +11,7 @@
     background-color: #dae0ffab;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding:4rem;
   }
   .footerBottom{
@@ -27,4 +28,13 @@
   }
   .contactInfo{
     margin: 1rem 0;
+  }
+  .margin{
+    margin: 1rem 0;
+  }
+
+  @media only screen and (max-width:800px){
+    .footerUp{
+      padding: 2rem;
+    }
   }

@@ -10,3 +10,12 @@
     margin-bottom: 0.5rem;
   }
   
+  @media only screen and (max-width:800px){
+    .eventCard img{
+      width: 90%;
+      height: auto;
+    }
+    .eventCard{
+      margin: 1rem 0;
+    }
+  }

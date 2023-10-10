@@ -44,3 +44,22 @@
   position: absolute;
   right: -2rem;
 }
+
+
+@media only screen and (max-width: 800px){
+  .joinleft {
+    width: 100%;
+    margin: 0 2rem;
+  }
+  
+  .joinRight{
+    display: none;
+  }
+  .blankRight{
+    display: none;
+  }
+  .joinUS{
+    justify-content: center;
+    min-height: 30rem;
+  }
+}

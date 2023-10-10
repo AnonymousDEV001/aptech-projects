@@ -56,7 +56,9 @@
 }
 .form{
     margin: 3rem 0;
+    flex-wrap: wrap-reverse;
 }
+
 .form button{
     width: 1rem;
     height: 3rem;
@@ -88,4 +90,20 @@
 }
 .Email p{
     margin: 0 0.5rem;
+}
+
+@media only screen and (max-width:1200px){
+    .form form{
+        width: 90%;
+        padding: 2rem;
+    }
+    .ContactDetails{
+        margin: 1rem;
+        width: 90%;
+        min-height: 28rem;
+        padding: 2rem;
+    }
+    .form button{
+        width: 50%;
+    }
 }

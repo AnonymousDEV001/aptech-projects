@@ -6,6 +6,7 @@
   justify-content: space-between;
   min-height: 6rem;
   margin: 0 3.5rem;
+  flex-wrap: wrap;
 }
 .navigation a{
   color: black;
@@ -45,4 +46,17 @@
   display: flex;
   justify-content:center;
   align-items:center;
+}
+
+@media only screen and (max-width: 768px) {
+  .sideFlower{
+  display: none;
+  }
+  .navigation {
+    margin: 0 0.5rem;
+    justify-content: space-evenly;
+  }
+  .dropdown{
+    right: 1rem;
+  }
 }

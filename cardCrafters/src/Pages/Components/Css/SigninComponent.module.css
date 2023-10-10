@@ -34,31 +34,61 @@
 .right form{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 .right form input{
     padding: 1rem;
-    width: 25rem;
+    width: 50%;
     border: none;
     background-color: #dee4ffab;
     margin: 0.3rem 0;
     border-radius: 0.2rem;
 }
-.right form input:focus{
+.right h3{
+    width: 50%;
+}
+.form input:focus{
     outline: #0085FF solid 2px;
 }
-.right form button{
-    padding: 0.7rem 1rem;
+.form button{
     width: 7rem;
     background-color:#6581fd;
     border: none;
     border-radius: 0.5rem;
     color: white;
     cursor: pointer;
-}.right form button:hover{
+    height: 3rem;
+}
+.form button img{
+    width: 3rem;
+}
+.form button:hover{
     
     background-color:#4567ff;
 }
 .right h3{
     font-size: 2rem;
     margin: 1rem 0;
+}
+.formBtn{
+    width: 50%;
+}
+@media only screen and (max-width:800px){
+    .left{
+        width: 100%;
+    }
+    .right{
+        width: 100%;
+        min-height: 80vh;
+    }
+    .right h3{
+        width: 90%;
+    }
+    .right form input{
+        width: 95%;
+    }
+    .formBtn{
+        width: 95%;
+    }
 }

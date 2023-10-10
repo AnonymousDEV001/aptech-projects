@@ -8,7 +8,7 @@ function Footer() {
     <footer>
       <div class={FooterCss.footerUp}>
         <div class="flex column">
-          <div class={`flex ${FooterCss.logo} ${NavbarCss.logo}`}>
+          <div class={`flex ${FooterCss.logo} ${NavbarCss.logo} ${FooterCss.margin}`}>
             <img src="logo.svg" alt="" />
             <p>Card Crafters</p>
           </div>
@@ -18,7 +18,7 @@ function Footer() {
             <p>Mailing Address: [Your Physical Address]</p>
           </div>
         </div>
-        <div class={FooterCss.footerNav}>
+        <div class={`${FooterCss.footerNav} ${FooterCss.margin}`}>
           <p style={{marginBottom:" 0.5rem",fontSize:"1.1rem"}}>
             Navigation Links
           </p>
@@ -32,7 +32,7 @@ function Footer() {
           <p>Privacy Policy</p>
           <p>Terms and Conditions</p>
         </div>
-        <div class={FooterCss.footerNav}>
+        <div class={`${FooterCss.footerNav} ${FooterCss.margin}`}>
         <p style={{marginBottom:" 0.5rem",fontSize:"1.1rem"}}>
             Social Media Links
           </p>
@@ -40,7 +40,7 @@ function Footer() {
           <p>Facebook</p>
           <p>Google</p>
         </div>
-        <div class={FooterCss.footerNav}>
+        <div class={`${FooterCss.footerNav} ${FooterCss.margin}`}>
         <p style={{marginBottom:" 0.5rem",fontSize:"1.1rem"}}>
             Customer Service:
           </p>

@@ -19,7 +19,7 @@ function JoinCommunity() {
           <img src="" alt="" />
         </div>
       </div>
-      <div></div>
+      <div className={JoinCommunityCss.blankRight}></div>
       <div class={`${JoinCommunityCss.joinRight} flex center`}>
         <img src="Anniversaries.jpg" alt="" />
         <img src="customer.jpeg" alt="" />

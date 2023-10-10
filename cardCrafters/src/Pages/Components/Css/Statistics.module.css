@@ -1,11 +1,12 @@
 .heading{
-    margin-left: 7rem;
+    width: 85%;
     font-size: 1.5rem;
 }
 .cards{
     margin: 1rem 0;
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 .card{
     height: 15rem;
@@ -17,4 +18,11 @@
     border-radius:1rem;
     align-items:center;
     flex-direction:column;
+}
+
+
+@media only screen and (max-width:800px) {
+    .card{
+        width: 100%;
+    }
 }

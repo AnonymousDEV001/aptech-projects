@@ -13,6 +13,7 @@ function MessagesSection() {
     }
   }, [state]);
   return (
+    <div className="flex center">
     <div className={MessageSectionCss.messageSection}>
       <h3 className="active">Messages</h3>
       <div className={MessageSectionCss.messageCards}>
@@ -34,6 +35,7 @@ function MessagesSection() {
           LOAD MORE
         </button>
       </div>
+    </div>
     </div>
   );
 }
