@@ -1,0 +1,47 @@
+.popularDestinations{
+    min-height: 100vh;
+    background-color: rgba(211, 211, 211, 0.208);
+    width: 100%;
+    padding: 3rem 0;
+}.gallary{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1.5fr 1.5fr;
+    gap: 1rem;
+    margin: 4rem;
+}
+
+.items{
+    background-color: lightgrey;
+    min-height: 15rem;
+    width:100%;
+}
+.itemRow{
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.itemColumn{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.item1{
+    background-image: url('/mountains.jpeg');
+    background-repeat: none;
+    background-size: cover;
+}
+.item2{
+    background-image: url('/alsoMosque.jpeg');
+    background-repeat: none;
+    background-size: cover;
+}
+.item3{
+    background-image: url('/faisalMosque.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.item4{
+    background-image: url('/Mosque.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

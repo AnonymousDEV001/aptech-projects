@@ -1,0 +1,21 @@
+.destinationHeading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .destinationHeading h3 {
+    font-size: 2rem;
+    color: rgb(53, 53, 53);
+  }
+  .destination span {
+    margin: 0.5rem;
+  }
+  .destinationHeading span {
+    position: relative;
+    font-size: 4rem;
+    color: rgba(211, 211, 211, 0.485);
+    top: 0rem;
+    font-weight: 900;
+  }
+  

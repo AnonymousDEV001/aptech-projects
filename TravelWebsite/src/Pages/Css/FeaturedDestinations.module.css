@@ -1,0 +1,23 @@
+.featuredDestinations {
+  /* background-color: rgba(211, 211, 211, 0.201); */
+  width: 100%;
+  min-height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 4rem 0;
+}
+
+.destinations {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+.destination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
